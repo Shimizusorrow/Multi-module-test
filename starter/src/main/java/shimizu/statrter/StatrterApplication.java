@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-        "com.shimizu.common"
+        "shimizu.common"
 })
 //@EnableFeignClients
 public class StatrterApplication {
