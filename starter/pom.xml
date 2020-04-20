@@ -20,6 +20,11 @@
     <dependencies>
         <dependency>
             <groupId>shimizu</groupId>
+            <artifactId>identity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>shimizu</groupId>
             <artifactId>app</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
