@@ -7,9 +7,10 @@
         <groupId>shimizu</groupId>
         <artifactId>common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
 
-    <groupId>shimizu</groupId>
+
     <artifactId>identity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>identity</name>
