@@ -6,7 +6,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 @MappedSuperclass
-public class User {
+public class SimpleEntity {
     @Id
     private String Id;
 
