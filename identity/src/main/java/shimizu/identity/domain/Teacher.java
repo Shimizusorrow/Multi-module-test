@@ -28,5 +28,5 @@ public class Teacher extends Person {
     private String teaLevel;
 
     @ApiModelProperty("入职时间")
-    private long hiredate;
+    private String hiredate;
 }

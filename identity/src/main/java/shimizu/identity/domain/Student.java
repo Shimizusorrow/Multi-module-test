@@ -45,4 +45,10 @@ public class Student extends Person {
      */
     @ApiModelProperty("学制")
     private int eductionalSystem;
+
+    /**
+     * 入学时间
+     */
+    @ApiModelProperty("入学时间")
+    private String enrollment;
 }

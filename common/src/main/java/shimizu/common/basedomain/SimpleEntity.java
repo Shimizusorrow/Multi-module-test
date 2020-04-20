@@ -1,4 +1,4 @@
-package shimizu.identity.domain.base;
+package shimizu.common.basedomain;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
