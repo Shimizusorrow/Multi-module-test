@@ -57,6 +57,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>shimizu.statrter.StatrterApplication</mainClass>
+<!--                    <skip>true</skip>-->
+                </configuration>
+
             </plugin>
         </plugins>
     </build>
