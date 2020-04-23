@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
+@BosType(value = "STU")
 public class Student extends Person {
     /**
      * 学号
