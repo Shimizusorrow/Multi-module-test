@@ -30,11 +30,16 @@ class StuRepositoryTest {
 //        System.out.println(stuRepository.findOne("1"));
         System.out.println(stuRepository.findOne("1").getName());
 //        System.out.println(stuRepository.findAll());
-        
+
     }
 
     @Test
     void findByName(){
         System.out.println(stuQueryService.findByName("1").getName());
+    }
+
+    @Test
+    void testAnnotion(){
+
     }
 }

@@ -3,6 +3,7 @@ package shimizu.common.swagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
+import shimizu.common.annotion.APIVersion;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -24,8 +25,24 @@ public class swaggerConfig {
                                 .version("")
                                 .build()
                 )
+                .groupName("default")
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+                .build();
+    }
+
+    @Bean
+    public Docket V1(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(new ApiInfoBuilder()
+                                     .title("Swagger @APIVersion")
+                                     .description("V1 版本")
+                                     .version("3.0")
+                                     .build()
+                )
+                .groupName("V1")
+                .select()
+                .apis(RequestHandlerSelectors.withMethodAnnotation(APIVersion.class))
                 .build();
     }
 }
