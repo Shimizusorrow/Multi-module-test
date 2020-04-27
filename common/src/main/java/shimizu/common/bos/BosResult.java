@@ -1,9 +1,14 @@
 package shimizu.common.bos;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.TypeExcludeFilter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Component;
 import shimizu.common.annotion.BosType;
@@ -20,25 +25,33 @@ import java.util.stream.Collectors;
  * @param:
  * @return:
  */
-//@Component
-public class BosResult {
-    @Autowired
-    private BosTypeManager bosTypeManager;
+
+//@AllArgsConstructor
+//@Order(1)
+
+public  class BosResult {
+
+//    private  BosTypeManager bosTypeManager;
     /**
      * 储存扫到的包名
      */
     private HashSet basePackages = new HashSet();
 
-    private Class<?> aClass;
+    private Class<?> aClass=SpringBootApplication.class;
 
     public int size() {
         return basePackages.size();
     }
 
+//    public BosResult(Class c,BosTypeManager bosTypeManager) {
+//        this.aClass = c;
+//        this.bosTypeManager=bosTypeManager;
+//        initEnum();
+//        initBosType();
+//    }
     public BosResult(Class c) {
         this.aClass = c;
         initEnum();
-        initBosType();
     }
 
     /**
@@ -49,6 +62,12 @@ public class BosResult {
      * @return: void
      */
 //    @PostConstruct
+//    @Bean
+    public void init(){
+        this.basePackages=new HashSet();
+    }
+
+
     public void initEnum() {
         SpringBootApplication annotation = aClass.getAnnotation(SpringBootApplication.class);
         basePackages.addAll(Arrays.asList(annotation.scanBasePackages()));
@@ -67,7 +86,7 @@ public class BosResult {
      * @param: []
      * @return: void
      */
-    public void initBosType(){
+    public void initBosType(BosTypeManager bosTypeManager){
         for (Object s: basePackages) {
             ClassPathScanningCandidateComponentProvider CPSCCP = new ClassPathScanningCandidateComponentProvider(false);
             CPSCCP.addIncludeFilter(new AnnotationTypeFilter(BosType.class));

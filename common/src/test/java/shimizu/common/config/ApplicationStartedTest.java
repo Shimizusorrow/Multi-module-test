@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.junit4.SpringRunner;
 import shimizu.common.annotion.BosType;
 import shimizu.common.basedomain.SimpleEntity;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Profile("test")
 class ApplicationStartedTest {
 
     @Autowired
@@ -51,20 +53,20 @@ class ApplicationStartedTest {
 
     }
 
-    @Test
-    public void t2(){
-        BosResult bosResult = new BosResult(TestApplication.class);
-        System.out.println(bosResult.size());
-        HashSet set = bosResult.getSet();
-        set.forEach(System.out::println);
-
-        System.out.println(bosTypeManager.size());
-
-        bosTypeManager.map().forEach((k,v)->{
-            System.out.println("key: "+ k+" value: "+v);
-        });
-
-    }
+//    @Test
+//    public void t2(){
+//        BosResult bosResult = new BosResult(TestApplication.class);
+//        System.out.println(bosResult.size());
+//        HashSet set = bosResult.getSet();
+//        set.forEach(System.out::println);
+//
+//        System.out.println(bosTypeManager.size());
+//
+//        bosTypeManager.map().forEach((k,v)->{
+//            System.out.println("key: "+ k+" value: "+v);
+//        });
+//
+//    }
     @Test
     public void t3(){
         bosTypeManager.put(TestEntity.class);
