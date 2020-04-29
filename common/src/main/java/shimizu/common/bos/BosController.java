@@ -11,20 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 import shimizu.common.annotion.APIVersion;
 import shimizu.common.annotion.BosType;
 
+import javax.persistence.EntityManager;
+
 @Api("bos 相关查询")
 @RequestMapping("/bos")
 @RestController
 //@AllArgsConstructor
 public class BosController<T> {
 
+
     @Autowired
-    private  BosTypeManager bosTypeManager;
+    private BosService bosService;
+
 
     @GetMapping("/bos-entity/{id}")
     @APIVersion
     @ApiOperation("通过id查询实体信息")
-    public Class<?> findEntity(@PathVariable String id){
-        return bosTypeManager.getClass(id);
+    public T findEntity(@PathVariable String id){
+        return (T) bosService.find(id);
     }
 
 }

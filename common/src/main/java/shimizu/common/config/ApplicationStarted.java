@@ -6,6 +6,7 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import shimizu.common.bos.BosResult;
 import shimizu.common.bos.BosTypeManager;
 
@@ -22,12 +23,10 @@ import shimizu.common.bos.BosTypeManager;
 
 //@ComponentScan("shimizu.common")
 //@Configuration
-
+@Component
 public class ApplicationStarted implements ApplicationListener<ApplicationStartedEvent> {
-
 //    @Autowired
 //    private  BosTypeManager bosTypeManager;
-
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {

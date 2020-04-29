@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
+@BosType("TEA")
 public class Teacher extends Person {
     /**
      *  系别 TODO 暂且做成String 应该抽出做成 对象 然后有系编码

@@ -18,6 +18,7 @@ import shimizu.common.bos.BosResult;
 import shimizu.common.bos.BosTypeManager;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,6 +33,9 @@ class ApplicationStartedTest {
 
     @Autowired
     BosTypeManager bosTypeManager;
+
+    @Autowired
+    EntityManager entityManager;
     @Test
     public void t1() {
         Class<TestApplication> c =TestApplication.class;
@@ -75,10 +79,14 @@ class ApplicationStartedTest {
             System.out.println("key: "+ k+" value: "+v);
         });
         TestEntity entity = new TestEntity();
-        entity.setId("123456"+"S01");
+        String id="123456"+"S01";
+        entity.setId(id);
         Class<?> aClass = bosTypeManager.getClass(entity.getId());
 
+//        Object o = entityManager.find(aClass, id);
+
         System.out.println(aClass.getTypeName());
+
 
         Assert.assertEquals(TestEntity.class,aClass);
     }
