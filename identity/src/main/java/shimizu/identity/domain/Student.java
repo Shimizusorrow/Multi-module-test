@@ -11,6 +11,9 @@ import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
 
+/**
+ * @author Shimizu
+ */
 @Entity
 @ApiModel("学生")
 @NoArgsConstructor

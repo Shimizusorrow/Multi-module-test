@@ -10,6 +10,9 @@ import shimizu.identity.repository.StuRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+/**
+ * @author Shimizu
+ */
 @Service
 public class StuService {
     @Autowired

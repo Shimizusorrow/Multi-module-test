@@ -11,10 +11,16 @@ import shimizu.common.annotion.APIVersion;
 import shimizu.identity.domain.Student;
 import shimizu.identity.service.query.StuQueryService;
 
+import java.util.List;
+
+/**
+ * @author Shimizu
+ */
 @RestController
 @AllArgsConstructor
 @RequestMapping("/stu")
 public class StuQueryController {
+
     @Autowired
     private StuQueryService stuQueryService;
 
@@ -24,5 +30,12 @@ public class StuQueryController {
     @APIVersion
     public Student findById(@PathVariable String id){
         return stuQueryService.findById(id);
+    }
+
+    @GetMapping
+    @ApiOperation("查找所有学生")
+    @APIVersion
+    public List<Student>findAll(){
+        return stuQueryService.findAll();
     }
 }

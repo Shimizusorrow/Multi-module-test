@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 import shimizu.identity.domain.Student;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
+/**
+ * @author Shimizu
+ */
 @Service
 public class StuQueryService {
     @Autowired
@@ -18,6 +22,11 @@ public class StuQueryService {
 
     public Student findById(String id) {
         return (Student) entityManager.createQuery("select s from Student s where s.Id = "+id).getSingleResult();
+    }
+
+    public List<Student>findAll(){
+        String sql="select s from Student s ";
+        return (List<Student>) entityManager.createQuery(sql).getResultList();
     }
 
 }
