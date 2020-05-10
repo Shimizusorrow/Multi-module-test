@@ -17,8 +17,7 @@ public class BosService<T> {
     private BosTypeManager bosTypeManager;
 
     public T find(String id){
-        Class<?> aClass=bosTypeManager.getClass(id);
-        return (T) entityManager.find(aClass, id);
+        return (T) entityManager.find(bosTypeManager.getClass(id), id);
     }
 
 }
