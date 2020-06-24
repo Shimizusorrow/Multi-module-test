@@ -1,11 +1,7 @@
 package shimizu.common.config;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import shimizu.common.bos.BosResult;
 import shimizu.common.bos.BosTypeManager;
@@ -27,7 +23,7 @@ public class ApplicationStarted implements ApplicationListener<ApplicationStarte
     public void onApplicationEvent(ApplicationStartedEvent event) {
         Class<?> mainClass = event.getSpringApplication().getMainApplicationClass();
         //Autowired 拿不到bosTypeManager???
-        BosTypeManager bosTypeManager=event.getApplicationContext().getBean(BosTypeManager.class);
+        BosTypeManager bosTypeManager = event.getApplicationContext().getBean(BosTypeManager.class);
 
         BosResult result = new BosResult(mainClass);
 

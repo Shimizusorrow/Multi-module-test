@@ -13,11 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "shimizu.app",
         "shimizu.identity"
 })
-
 @SpringBootConfiguration
-@EnableSwagger2
 public class StarterApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(StarterApplication.class, args);
     }

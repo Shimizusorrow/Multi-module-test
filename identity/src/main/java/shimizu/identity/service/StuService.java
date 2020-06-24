@@ -21,12 +21,5 @@ public class StuService {
     @Autowired
     private EntityManager entityManager;
 
-//    public Page<Student> student(PageRequest pageRequest) {
-//        Query query = entityManager.createQuery("select s from  Student s");
-//        query.setMaxResults(pageRequest.getPageSize());
-//        query.setFirstResult(pageRequest.getPageNumber()-1);
-//        query.getResultList();
-//
-//    }
 
 }
