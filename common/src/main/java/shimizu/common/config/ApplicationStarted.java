@@ -18,15 +18,10 @@ import shimizu.common.bos.BosTypeManager;
  * @return:
  */
 
-//@Order(1)
-//@Component
 
-//@ComponentScan("shimizu.common")
-//@Configuration
 @Component
 public class ApplicationStarted implements ApplicationListener<ApplicationStartedEvent> {
-//    @Autowired
-//    private  BosTypeManager bosTypeManager;
+
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
@@ -34,15 +29,10 @@ public class ApplicationStarted implements ApplicationListener<ApplicationStarte
         //Autowired 拿不到bosTypeManager???
         BosTypeManager bosTypeManager=event.getApplicationContext().getBean(BosTypeManager.class);
 
-//        BosResult result = new BosResult(mainClass,bosTypeManager);
         BosResult result = new BosResult(mainClass);
 
         result.initBosType(bosTypeManager);
-//        result.initEnum();
-//        result.initBosType();
-//        System.out.println("+++++"+mainClass.getSimpleName());
-//        result.initBosType();
-//        result.initEnum();
+
 
     }
 }

@@ -8,6 +8,9 @@ import shimizu.common.basedomain.SimpleEntity;
 
 import javax.persistence.MappedSuperclass;
 
+/**
+ * @author Shimizu
+ */
 @MappedSuperclass
 @ApiModel("基础信息")
 @Getter

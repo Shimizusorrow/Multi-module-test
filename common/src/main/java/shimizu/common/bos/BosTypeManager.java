@@ -1,14 +1,14 @@
 package shimizu.common.bos;
 
-import lombok.NoArgsConstructor;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import shimizu.common.annotion.BosType;
 
 import java.util.HashMap;
 
 
+/**
+ * @author Shimizu
+ */
 @Component
 public class BosTypeManager {
     private static final int BOS_TYPE_SIZE = 3;

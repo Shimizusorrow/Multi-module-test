@@ -3,19 +3,23 @@ package shimizu.statrter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author Shimizu
+ */
 @SpringBootApplication(scanBasePackages = {
         "shimizu.common",
         "shimizu.app",
         "shimizu.identity"
 })
-//@EnableFeignClients
+
 @SpringBootConfiguration
-public class StatrterApplication {
+@EnableSwagger2
+public class StarterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StatrterApplication.class, args);
+        SpringApplication.run(StarterApplication.class, args);
     }
 
 }

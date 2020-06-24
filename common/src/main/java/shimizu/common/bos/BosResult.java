@@ -25,30 +25,15 @@ import java.util.stream.Collectors;
  * @param:
  * @return:
  */
-
-//@AllArgsConstructor
-//@Order(1)
-
 public  class BosResult {
-
-//    private  BosTypeManager bosTypeManager;
-    /**
-     * 储存扫到的包名
-     */
+    //储存扫到的包名
     private HashSet basePackages = new HashSet();
-
     private Class<?> aClass=SpringBootApplication.class;
 
     public int size() {
         return basePackages.size();
     }
 
-//    public BosResult(Class c,BosTypeManager bosTypeManager) {
-//        this.aClass = c;
-//        this.bosTypeManager=bosTypeManager;
-//        initEnum();
-//        initBosType();
-//    }
     public BosResult(Class c) {
         this.aClass = c;
         initEnum();
@@ -61,8 +46,6 @@ public  class BosResult {
      * @param: []
      * @return: void
      */
-//    @PostConstruct
-//    @Bean
     public void init(){
         this.basePackages=new HashSet();
     }

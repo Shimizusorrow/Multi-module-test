@@ -11,9 +11,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author Shimizu
+ */
 @Configuration
 @EnableSwagger2
-public class swaggerConfig {
+public class SwaggerConfig {
 
     @Bean
     public Docket config(){
@@ -23,8 +26,7 @@ public class swaggerConfig {
                                 .title("Swagger UI Test By Shimizu")
                                 .description("")
                                 .version("")
-                                .build()
-                )
+                                .build())
                 .groupName("default")
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
@@ -38,8 +40,7 @@ public class swaggerConfig {
                                      .title("Swagger @APIVersion")
                                      .description("V1 版本")
                                      .version("3.0")
-                                     .build()
-                )
+                                     .build())
                 .groupName("V1")
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(APIVersion.class))

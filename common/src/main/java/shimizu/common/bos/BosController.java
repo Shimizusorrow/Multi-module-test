@@ -15,9 +15,7 @@ import shimizu.common.annotion.APIVersion;
 @Api("bos 相关查询")
 @RequestMapping("/bos")
 @RestController
-//@AllArgsConstructor
 public class BosController<T> {
-
 
     @Autowired
     private BosService bosService;

@@ -1,11 +1,19 @@
 package shimizu.common.basedomain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+/**
+ * @author Shimizu
+ */
 @MappedSuperclass
+@Getter
+@Setter
 public class SimpleEntity {
     @Id
     private String Id;
@@ -40,27 +48,5 @@ public class SimpleEntity {
         this.updateTime = System.currentTimeMillis();
     }
 
-    public String getId() {
-        return Id;
-    }
 
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
-    }
-
-    public long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-    }
 }

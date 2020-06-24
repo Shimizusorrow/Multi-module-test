@@ -49,7 +49,7 @@ public class Student extends Person {
      *  学制 3/4
      */
     @ApiModelProperty("学制")
-    private int eductionalSystem;
+    private int educationalSystem;
 
     /**
      * 入学时间

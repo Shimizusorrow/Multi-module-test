@@ -33,5 +33,5 @@ public class Teacher extends Person {
     private String teaLevel;
 
     @ApiModelProperty("入职时间")
-    private String hiredate;
+    private String hireDate;
 }
