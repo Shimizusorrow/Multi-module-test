@@ -10,6 +10,7 @@ import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
 /**
  * @author Shimizu
@@ -20,6 +21,11 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @BosType(value = "STU")
+/**
+ * 基于注释的命名查询配置
+ */
+@NamedQuery(name = "Student.findByStuNumber",
+        query = "select s from Student s where s.stuNumber =?1")
 public class Student extends Person {
     /**
      * 学号
@@ -34,19 +40,19 @@ public class Student extends Person {
     private int shoNumber;
 
     /**
-     *  系别 TODO 暂且做成String 应该抽出做成 对象 然后有系编码
+     * 系别 TODO 暂且做成String 应该抽出做成 对象 然后有系编码
      */
     @ApiModelProperty("系别")
     private String department;
 
     /**
-     *  院校 TODO 暂且做成String 应该抽出做成 对象 然后有院校编码和地理位置信息
+     * 院校 TODO 暂且做成String 应该抽出做成 对象 然后有院校编码和地理位置信息
      */
     @ApiModelProperty("院校")
     private String academy;
 
     /**
-     *  学制 3/4
+     * 学制 3/4
      */
     @ApiModelProperty("学制")
     private int educationalSystem;
