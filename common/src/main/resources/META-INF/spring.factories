@@ -1,1 +1,2 @@
 #org.springframework.context.ApplicationListener=shimizu.common.config.ApplicationStarted
+#org.springframework.context.ApplicationContextInitializer=shimizu.common.config.LearnApplicationContextInitializer

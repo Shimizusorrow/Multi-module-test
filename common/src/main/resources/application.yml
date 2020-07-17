@@ -10,3 +10,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
 
+context:
+  initializer:
+    classes: shimizu.common.config.LearnApplicationContextInitializer
