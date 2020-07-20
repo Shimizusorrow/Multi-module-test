@@ -1,4 +1,18 @@
-TEST : "测试一下"
-Messages:
-  - "Hello"
-  - "World!"
+#TEST: "测试一下"
+#Messages:
+#  - "Hello"
+#  - "World!"
+#
+#tier1:
+#  - "this is tier1"
+#  - "this is tier1"
+#  - tier2:
+#      - "this is tier2"
+#      - "this is tier2"
+
+InformationConfig:
+  QQ_NUMBER:
+    - "1047791704"
+    - "2473409828"
+  USER_ID: "1"
+  AGE: 18

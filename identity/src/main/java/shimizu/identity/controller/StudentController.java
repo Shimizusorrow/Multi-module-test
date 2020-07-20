@@ -90,4 +90,10 @@ public class StudentController {
     public String testYmls() {
         return String.join(" ", MessageConfig.Messages);
     }
+
+//    @ApiOperation("测试导出Yml数组数据")
+//    @GetMapping("/ymls-tier")
+//    public String testYmlsTier() {
+//        Stream.of(MessageConfig.tier).collect(Collectors.toList());
+//    }
 }

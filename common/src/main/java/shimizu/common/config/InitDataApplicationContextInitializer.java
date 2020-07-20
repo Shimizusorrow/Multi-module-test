@@ -15,8 +15,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Shimizu
@@ -37,8 +38,11 @@ public class InitDataApplicationContextInitializer implements ApplicationContext
             FileInputStream inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/common/src/main/resources/initData.yml"));
             Map<String, Object> map = yaml.load(inputStream);
 
-            MessageConfig.TEST = (String) map.get("TEST");
-            MessageConfig.Messages = (String[]) ((List) map.get("Messages")).toArray(new java.lang.String[0]);
+//            MessageConfig.TEST = (String) map.get("TEST");
+//            MessageConfig.Messages = Stream.of(map.get("Messages")).collect(Collectors.toCollection(ArrayList::new));
+//            MessageConfig.tier = (Object[][]) ((List) map.get("tier1")).toArray(new Object[0][0]);
+//            Object config = map.get("InformationConfig");
+//            InformationConfig.USER_ID=(String) config.getClass().getField("USER_ID").get(config);
 
             logger.info(String.format("一共导入了%s条 Yaml数据", map.size()));
         } catch (FileNotFoundException e) {
