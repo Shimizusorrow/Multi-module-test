@@ -4,13 +4,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import shimizu.identity.domain.base.Person;
 import shimizu.identity.domain.object.StudentInfo;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -24,10 +23,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Professer extends Person {
+public class Professor extends Person {
 
     @ApiModelProperty("测试多对一")
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Teacher teacher;
 
     @ApiModelProperty("测试一对多")

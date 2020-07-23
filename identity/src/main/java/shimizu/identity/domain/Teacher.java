@@ -9,6 +9,8 @@ import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 /**
  * @author Shimizu
@@ -34,4 +36,7 @@ public class Teacher extends Person {
 
     @ApiModelProperty("入职时间")
     private String hireDate;
+
+//    @OneToMany
+//    private Set<Process> parent;
 }
