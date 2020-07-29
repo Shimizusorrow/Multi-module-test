@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>shimizu</groupId>
-        <artifactId>shimizu</artifactId>
+        <artifactId>multi-module</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
 
-    <artifactId>app</artifactId>
+    <artifactId>shimizu.app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app</name>
     <description>Demo project for Spring Boot</description>
@@ -21,37 +21,11 @@
     </properties>
 
     <dependencies>
-<!--        本地依赖-->
+        <!--        本地依赖-->
         <dependency>
             <groupId>shimizu</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>shimizu.common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 

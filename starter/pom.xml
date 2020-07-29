@@ -5,11 +5,11 @@
 
     <parent>
         <groupId>shimizu</groupId>
-        <artifactId>shimizu</artifactId>
+        <artifactId>multi-module</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>statrter</artifactId>
+    <artifactId>shimizu.starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -20,17 +20,12 @@
     <dependencies>
         <dependency>
             <groupId>shimizu</groupId>
-            <artifactId>identity</artifactId>
+            <artifactId>shimizu.identity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>shimizu</groupId>
-            <artifactId>app</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>shimizu</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>shimizu.app</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

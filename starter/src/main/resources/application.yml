@@ -12,6 +12,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
 server:
-  port: 8080
+  port: 8010
   servlet:
     context-path: /shimizu

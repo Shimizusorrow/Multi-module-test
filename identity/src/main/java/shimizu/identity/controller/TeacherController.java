@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import shimizu.identity.domain.Teacher;
 import shimizu.identity.repository.TeaRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class TeacherController {
     @ApiOperation("查找所有的老师")
     @GetMapping
     public List<Teacher> findAll() {
+        System.out.println(Arrays.asList("!!!!1","222222"));
         return teaRepository.findAll();
     }
 }

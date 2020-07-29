@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>shimizu</groupId>
-        <artifactId>shimizu</artifactId>
+        <artifactId>multi-module</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
 
-    <artifactId>common</artifactId>
+    <artifactId>shimizu.common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
     <description>Demo project for Spring Boot</description>

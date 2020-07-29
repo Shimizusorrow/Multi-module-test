@@ -4,9 +4,15 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://127.0.0.1:3306/shimizu?useSSL=false&characterEncoding=utf-8&serverTimezone=GMT%2b8
+  application:
+    name: identity-application
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+server:
+  port: 8010
 

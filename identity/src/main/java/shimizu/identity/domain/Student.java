@@ -10,7 +10,6 @@ import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
 
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
 
 /**
  * @author Shimizu
@@ -21,11 +20,6 @@ import javax.persistence.NamedQuery;
 @Getter
 @Setter
 @BosType(value = "STU")
-/**
- * 基于注释的命名查询配置
- */
-@NamedQuery(name = "Student.findByStuNumber",
-        query = "select s from Student s where s.stuNumber =?1")
 public class Student extends Person {
     /**
      * 学号
