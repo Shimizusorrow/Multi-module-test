@@ -2,6 +2,7 @@ package shimizu.common.bos;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,9 @@ import shimizu.common.annotion.APIVersion;
 @Api("bos 相关查询")
 @RequestMapping("/bos")
 @RestController
+@AllArgsConstructor
 public class BosController<T> {
-
-    @Autowired
-    private BosService bosService;
+    private final BosService bosService;
 
 
     @GetMapping("/bos-entity/{id}")

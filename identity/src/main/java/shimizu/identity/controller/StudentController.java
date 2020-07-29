@@ -1,5 +1,6 @@
 package shimizu.identity.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -20,14 +21,12 @@ import java.util.stream.Stream;
 /**
  * @author Shimizu
  */
+@Api(tags = "学生")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/stu")
 public class StudentController {
-
-    @Autowired
-    private StuQueryService stuQueryService;
-
+    private final StuQueryService stuQueryService;
 
     @GetMapping("/{id}")
     @ApiOperation("通过id查找学生")

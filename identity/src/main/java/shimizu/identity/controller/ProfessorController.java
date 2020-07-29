@@ -1,6 +1,6 @@
 package shimizu.identity.controller;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +16,7 @@ import java.util.List;
  * @date 2020/7/20 11:58
  */
 
+@Api(tags = "教授")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/professor")
@@ -23,7 +24,7 @@ public class ProfessorController {
     private final ProfessorDomainService professorDomainService;
     private final ProfessorRepository professorRepository;
 
-    @ApiModelProperty("新建 Professor")
+    @ApiOperation("新建 Professor")
     @PostMapping
     public Professor save(@RequestBody Professor professor) {
         return professorDomainService.save(professor);

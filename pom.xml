@@ -13,7 +13,7 @@
     <groupId>shimizu</groupId>
     <artifactId>multi-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>shimizu</name>
+    <name>Multi-module-test</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
