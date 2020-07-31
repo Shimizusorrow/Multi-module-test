@@ -10,7 +10,7 @@ import shimizu.identity.domain.Student;
  * @author Shimizu
  */
 public interface StuRepository extends JpaRepository<Student, String> {
-    @Query(value = "select s from Student s where s.Id = :id")
+    @Query(value = "select s from Student s where s.id = :id")
     Student findOne(String id);
 
 //    @Query(value = "select s from Student as s where ")

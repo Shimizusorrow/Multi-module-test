@@ -28,4 +28,10 @@ public class BosController<T> {
         return (T) bosService.find(id);
     }
 
+    @GetMapping("/clear-information")
+    @ApiOperation("清空数据")
+    public void clearInformation() {
+        bosService.clearInformation();
+    }
+
 }

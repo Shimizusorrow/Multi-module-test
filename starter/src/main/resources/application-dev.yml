@@ -9,6 +9,11 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+  security:
+    user:
+      name: user
+      password: user
+      roles: user,admin
 
 context:
   initializer:
