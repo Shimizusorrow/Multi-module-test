@@ -1,12 +1,16 @@
 package shimizu.common.config;
 
 
+import com.mysql.cj.util.StringUtils;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.Yaml;
 
@@ -16,6 +20,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,10 +32,11 @@ import java.util.stream.Stream;
  */
 @Component
 @Slf4j
+//@AllArgsConstructor
 public class InitDataApplicationContextInitializer implements ApplicationContextInitializer {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-//    private Environment environment;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//    private final Environment environment;
 
     @SneakyThrows
     @Override
@@ -47,15 +54,22 @@ public class InitDataApplicationContextInitializer implements ApplicationContext
 
 //            logger.info(String.format("一共导入了%s条 Yaml数据", map.size()));
         FileInputStream inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/starter/src/main/resources/application-dev.yml"));
-            Map<String, Object> map = yaml.load(inputStream);
-            Object o = map.get("spring");
+        Map<String, Object> map = yaml.load(inputStream);
+        Object o = map.get("spring");
 //            List<String>fd= (List<String>) o;
-            logger.info(o.toString());
+        String x = o.toString();
+        List<String> collect = Stream.of(x).peek(System.out::println).collect(Collectors.toList());
+        Matcher matcher = Pattern.compile("[a-zA-Z0-9_]+\\?").matcher(x);
+        if (matcher.find()){
+            logger.info(matcher.group().substring(0,matcher.group().length()-1));
+        }
+//        logger.info(environment.getProperty("spring"));
+
+
 //            fd.forEach(it->logger.info(it));
 //        for (String profile : environment.getDefaultProfiles()) {
 //            logger.info(profile);
 //        }
-
 
     }
 }
