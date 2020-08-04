@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @AllArgsConstructor
+@Transactional(rollbackFor = Exception.class)
 public class BosService<T> {
     private final EntityManager entityManager;
     private final BosTypeManager bosTypeManager;
@@ -35,21 +36,21 @@ public class BosService<T> {
     }
 
     @Modifying
-    @Transactional(rollbackFor = Exception.class)
-    public void clearInformation() {
+    public void clearInformation(List<String> filter) {
         //从yml配置中拿配置的数据库名字
         String schema = getSchema(environment.getProperty("spring.datasource.url"));
         final String GET_TABLE_NAME = String.format("select TABLE_NAME from information_schema.`TABLES` where TABLE_SCHEMA = '%s'", schema);
         final String TRUNCATE_TABLE = "truncate ";
         List<String> tableNames = (List<String>) entityManager.createNativeQuery(GET_TABLE_NAME).getResultStream().collect(Collectors.toList());
 
-        List<String> filter = Arrays.asList("user");
+        if (filter != null) {
+            tableNames = tableNames.stream()
+                    .filter(it -> !filter.contains(it)).collect(Collectors.toList());
+        }
 
-        List<String> rsTableNames = tableNames.stream()
-                .filter(it -> !filter.contains(it))
+        tableNames = tableNames.stream()
                 .map(it -> TRUNCATE_TABLE + it)
                 .collect(Collectors.toList());
-
         /**
          * 删除外键约束
          */
@@ -57,17 +58,18 @@ public class BosService<T> {
         /**
          * 清除内容
          */
-        rsTableNames.forEach(it -> entityManager.createNativeQuery(it).executeUpdate());
+        tableNames.forEach(it -> entityManager.createNativeQuery(it).executeUpdate());
         /**
          * 启动外键约束
          */
         entityManager.createNativeQuery("SET foreign_key_checks = 1").executeUpdate();
 
-        logger.info(String.format("输出当前执行的数量为%d", rsTableNames.size()));
+        logger.info(String.format("输出当前执行的数量为%d", tableNames.size()));
     }
 
     /**
      * 提取String中 以?为结尾的 英文字符 + 数字 + _
+     *
      * @param url
      * @return
      */

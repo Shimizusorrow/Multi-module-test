@@ -4,11 +4,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shimizu.common.annotion.APIVersion;
+
+import java.util.List;
 
 /**
  * @author Shimizu
@@ -29,9 +28,9 @@ public class BosController<T> {
     }
 
     @GetMapping("/clear-information")
-    @ApiOperation("清空数据")
-    public void clearInformation() {
-        bosService.clearInformation();
+    @ApiOperation("清空数据 默认清除所有数据")
+    public void clearInformation(@RequestParam(required = false) List<String> filter) {
+        bosService.clearInformation(filter);
     }
 
 }
