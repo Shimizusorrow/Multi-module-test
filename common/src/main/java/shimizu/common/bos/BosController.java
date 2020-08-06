@@ -33,4 +33,10 @@ public class BosController<T> {
         bosService.clearInformation(filter);
     }
 
+    @GetMapping("/exec-cmd")
+    @ApiOperation("测试执行Cmd 并将cmd中的内容保留至txt中")
+    public void doSomething(){
+        bosService.doSomething();
+    }
+
 }
