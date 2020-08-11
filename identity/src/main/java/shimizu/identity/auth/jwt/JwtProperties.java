@@ -1,4 +1,4 @@
-//package shimizu.common.auth.jwt;
+//package shimizu.identity.auth.jwt;
 //
 //import lombok.Getter;
 //import lombok.Setter;

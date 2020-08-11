@@ -4,22 +4,33 @@
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.builders.WebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 //import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-//import shimizu.common.auth.jwt.JwtAuthenticationProvider;
-//import shimizu.common.auth.jwt.JwtAuthenticationSuccessHandler;
+//import org.springframework.web.cors.CorsConfiguration;
+//import org.springframework.web.cors.CorsConfigurationSource;
+//import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+//import org.springframework.web.filter.CompositeFilter;
+//import shimizu.identity.auth.UserInfo;
+//import shimizu.identity.auth.jwt.JwtAuthenticationProvider;
+//import shimizu.identity.auth.jwt.JwtAuthenticationSuccessHandler;
+//import shimizu.identity.auth.jwt.JwtFilter;
+//import shimizu.identity.auth.web.WebAuthenticationFilter;
+//import shimizu.common.config.authentication.RestAccessDeniedHandler;
+//import shimizu.common.config.authentication.RestAuthenticationEntryPoint;
+//import shimizu.common.config.authentication.SimpleLogoutHandler;
+//
+//import javax.servlet.Filter;
+//import java.util.ArrayList;
+//import java.util.Collections;
+//import java.util.List;
 //
 ///**
 // * @author Shimizu
@@ -31,17 +42,15 @@
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 //@AllArgsConstructor
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
-////    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 //
-//    //    private final RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
-//    private final JwtAuthenticationSuccessHandler restAuthenticationSuccessHandler;
 //
-//    private final JwtAuthenticationProvider jwtAuthenticationProvider;
-//
+//    private final JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler;
 //    private final AuthenticationFailureHandler authenticationFailureHandler;
-//
-//
-////    private final JwtFilter jwtFilter;
+//    private final SimpleLogoutHandler simpleLogoutHandler;
+//    private final JwtFilter jwtFilter;
+//    private final UserInfo userInfo;
+//    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+//    private final RestAccessDeniedHandler restAccessDeniedHandler;
 //
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
@@ -50,10 +59,10 @@
 //        http.cors()
 //                .and()
 //                .csrf().disable()
-////                .addFilterBefore(ssoFilter(am), BasicAuthenticationFilter.class)
+//                .addFilterBefore(ssoFilter(am), BasicAuthenticationFilter.class)
 //                .exceptionHandling()
-////                .authenticationEntryPoint(restAuthenticationEntryPoint)
-////                .accessDeniedHandler(restAccessDeniedHandler)
+//                .authenticationEntryPoint(restAuthenticationEntryPoint)
+//                .accessDeniedHandler(restAccessDeniedHandler)
 //                .and()
 //                .authorizeRequests()
 //                .antMatchers("/public/**", "/graphql", "/login").permitAll()
@@ -75,53 +84,78 @@
 ////                .headers().addHeaderWriter(new XFrameOptionsHeaderWriter(new WhiteListedAllowFromStrategy(Arrays.asList("http://127.0.0.1:8080/","http://192.168.10.187:8088/", "http://183.245.77.242:8088/"))))
 //                .and()
 //                .logout()
-////                .logoutSuccessHandler(simpleLogoutHandler)
+//                .logoutSuccessHandler(simpleLogoutHandler)
 //                .and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //
-////        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-//
-//
+//        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 //    }
 //
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        //忽略swagger访问权限限制
-//        // web.ignoring().antMatchers(
-//        //        "/userlogin",
-//        //    "/userlogout",
-//        //     "/userjwt",
-//        //   "/v2/api-docs",
-//        //   "/swagger-resources/configuration/ui",
-//        //  "/swagger-resources",
-//        // "/swagger-resources/configuration/security",
-//        //"/swagger-ui.html",
-//        //"/css/**",
-//        //"/js/**",
-//        //"/images/**",
-//        //"/webjars/**",
-//        //"**/favicon.ico",
-//        //"/index");
-//        super.configure(web);
-//        //解决静态资源被拦截的问题
-//        web.ignoring().mvcMatchers("/api/**");
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Collections.singletonList("*"));
+//        configuration.setAllowedMethods(Collections.singletonList("*"));
+//        configuration.addAllowedHeader("X-Auth-Token");
+//        configuration.addExposedHeader("X-Auth-Token");
+//        configuration.addAllowedHeader("content-type");
+//        configuration.setAllowCredentials(true);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
 //    }
 //
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        // 加入自定义的安全认证
-//        auth     //添加自定义的认证管理类
-//                .authenticationProvider(jwtAuthenticationProvider);
 //
+//    private Filter ssoFilter(AuthenticationManager am) {
+//        CompositeFilter compositeFilter = new CompositeFilter();
+//        List<Filter> filters = new ArrayList<>();
+//
+//        //Web登录
+//        addFilter(am, filters, new WebAuthenticationFilter());
+//
+////        //单警柜登录
+////        addFilter(am, filters, new PoliceCabinetAuthenticationFilter());
+////
+////        //人脸登录
+////        addFilter(am, filters, new FaceAuthenticationFilter());
+//
+//        compositeFilter.setFilters(filters);
+//        return compositeFilter;
 //    }
 //
 //    /**
-//     * @Description 自定义加密
-//     * @Date 2019/7/10 15:07
-//     * @Version 1.0
+//     * 统一为过滤器设置成功失败处理
+//     *
+//     * @param am
+//     * @param filters
+//     * @param filter
 //     */
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
+//    private void addFilter(AuthenticationManager am, List<Filter> filters, AbstractAuthenticationProcessingFilter filter) {
+//        filter.setAuthenticationManager(am);
+//        filter.setAuthenticationSuccessHandler(jwtAuthenticationSuccessHandler);
+//        filter.setAuthenticationFailureHandler(authenticationFailureHandler);
+//        filters.add(filter);
+//    }
+//
+////    /**
+////     * 配置认证校验提供器
+////     *
+////     * @param auth
+////     * @throws Exception
+////     */
+////    @Override
+////    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+////        auth
+////                .authenticationProvider(new WebAuthenticationProvider(userInfo))
+////                .authenticationProvider(new PoliceCabinetAuthenticationProvider(userInfo))
+////                .authenticationProvider(new FaceAuthenticationProvider(userInfo));
+//////                userDetailsService(identityService)
+//////                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+////    }
+//
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        //解决静态资源被拦截的问题
+//        web.ignoring().mvcMatchers("/api/**");
 //    }
 //}

@@ -1,4 +1,4 @@
-//package shimizu.common.auth.jwt;
+//package shimizu.identity.auth.jwt;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 //import org.springframework.stereotype.Component;
-//import shimizu.common.basedomain.User;
+//import shimizu.identity.domain.base.User;
 //
 //import javax.servlet.FilterChain;
 //import javax.servlet.ServletException;

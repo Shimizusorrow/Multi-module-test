@@ -1,4 +1,4 @@
-//package shimizu.common.auth.jwt;
+//package shimizu.identity.auth.jwt;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import lombok.AllArgsConstructor;

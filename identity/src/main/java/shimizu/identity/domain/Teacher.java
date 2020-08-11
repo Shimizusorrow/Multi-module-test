@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shimizu.common.annotion.BosType;
 import shimizu.identity.domain.base.Person;
+import shimizu.identity.domain.base.User;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.Set;
 
 /**
@@ -23,7 +25,7 @@ import java.util.Set;
 @BosType("TEA")
 public class Teacher extends Person {
     /**
-     *  系别 TODO 暂且做成String 应该抽出做成 对象 然后有系编码
+     * 系别 TODO 暂且做成String 应该抽出做成 对象 然后有系编码
      */
     @ApiModelProperty("系别")
     private String department;
@@ -36,6 +38,10 @@ public class Teacher extends Person {
 
     @ApiModelProperty("入职时间")
     private String hireDate;
+
+    @ApiModelProperty("一个账号")
+    @OneToOne
+    private User user;
 
 //    @OneToMany
 //    private Set<Process> parent;

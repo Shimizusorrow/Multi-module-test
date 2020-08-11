@@ -1,4 +1,4 @@
-//package shimizu.common.auth.jwt;
+//package shimizu.identity.auth.jwt;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import io.jsonwebtoken.Claims;
@@ -14,7 +14,7 @@
 //import org.springframework.security.core.AuthenticationException;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.stereotype.Component;
-//import shimizu.common.basedomain.User;
+//import shimizu.identity.domain.base.User;
 //
 //import java.util.Date;
 //import java.util.HashMap;
@@ -27,10 +27,14 @@
 // * @date 2020/7/30 8:26
 // */
 //@Component
-//@AllArgsConstructor
 //public class JwtAuthenticationProvider implements AuthenticationProvider {
 //    private final JwtProperties jwtProperties;
 //    private final ObjectMapper objectMapper;
+//
+//    public JwtAuthenticationProvider(JwtProperties jwtProperties, ObjectMapper objectMapper) {
+//        this.jwtProperties = jwtProperties;
+//        this.objectMapper = objectMapper;
+//    }
 //
 //    /**
 //     * 若是 http 请求，则从 http请求 header中获取的参数名

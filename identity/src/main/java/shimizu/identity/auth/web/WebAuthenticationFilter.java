@@ -1,4 +1,4 @@
-//package shimizu.common.auth.web;
+//package shimizu.identity.auth.web;
 //
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
@@ -17,7 +17,7 @@
 // * @date 2020/7/29 15:57
 // */
 //public class WebAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-//    protected WebAuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
+//    public WebAuthenticationFilter() {
 //        super(new AntPathRequestMatcher("/login", "POST"));
 //    }
 //
@@ -25,4 +25,6 @@
 //    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
 //        return null;
 //    }
+//
+//
 //}

@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import shimizu.identity.domain.base.Person;
+import shimizu.identity.domain.base.User;
 import shimizu.identity.domain.object.StudentInfo;
 
 import javax.persistence.*;
@@ -34,5 +35,9 @@ public class Professor extends Person {
     @JoinColumn(name = "stu_id")
     @OneToMany
     private List<StudentInfo> studentInfos;
+
+    @ApiModelProperty("测试一对一")
+    @OneToOne
+    private User user;
 
 }

@@ -12,6 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 public enum StudentStateEnum {
-    NORMAL("正常");
+    /**
+     *  学生状态
+     */
+    NORMAL("正常"),
+    ERROR("异常");
     private String desc;
 }
