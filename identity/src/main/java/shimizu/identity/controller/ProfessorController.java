@@ -3,6 +3,7 @@ package shimizu.identity.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.bytebuddy.asm.Advice;
 import org.springframework.web.bind.annotation.*;
 import shimizu.identity.domain.Professor;
 import shimizu.identity.repository.ProfessorRepository;
@@ -23,6 +24,7 @@ import java.util.List;
 public class ProfessorController {
     private final ProfessorDomainService professorDomainService;
     private final ProfessorRepository professorRepository;
+
 
     @ApiOperation("新建 Professor")
     @PostMapping

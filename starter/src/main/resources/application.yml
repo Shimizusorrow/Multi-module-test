@@ -10,8 +10,12 @@ spring:
 #    database-platform: org.hibernate.dialect.MySQLDialect 这条是错的
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-
+#  security:
+#    user:
+#      name: user
+#      password: user
+#      roles: user,admin
 server:
   port: 8010
-  servlet:
-    context-path: /shimizu
+#  servlet:
+#    context-path: /shimizu

@@ -3,6 +3,7 @@ package shimizu.identity.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.web.bind.annotation.*;
 import shimizu.identity.domain.Teacher;
 import shimizu.identity.repository.TeaRepository;
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("teacher")
 @AllArgsConstructor
+@ConditionalOnProperty(prefix = "tea",name = "enable",havingValue = "true")
 public class TeacherController {
     private TeaRepository teaRepository;
 

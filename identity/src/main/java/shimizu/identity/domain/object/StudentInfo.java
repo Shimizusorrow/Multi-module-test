@@ -2,6 +2,7 @@ package shimizu.identity.domain.object;
 
 import lombok.Getter;
 import lombok.Setter;
+import shimizu.common.basedomain.SimpleEntity;
 import shimizu.identity.domain.Student;
 import shimizu.identity.domain.base.Person;
 
@@ -18,7 +19,7 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @Entity
-public class StudentInfo extends Person {
+public class StudentInfo extends SimpleEntity {
 
     @ManyToOne
     private Student student;

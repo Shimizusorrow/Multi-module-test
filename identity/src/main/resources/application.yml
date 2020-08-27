@@ -3,10 +3,10 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://127.0.0.1:3306/shimizu?useSSL=false&characterEncoding=utf-8&serverTimezone=GMT%2b8
-#  application:
-#    name: identity-application
-#  main:
-#    allow-bean-definition-overriding: true
+  #  application:
+  #    name: identity-application
+  #  main:
+  #    allow-bean-definition-overriding: true
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,4 +19,6 @@ spring:
       roles: user,admin
 server:
   port: 8010
+tea:
+  enable: false
 
