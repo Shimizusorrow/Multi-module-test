@@ -18,6 +18,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+
+
+
+
     @Bean
     public Docket config(){
         return new Docket(DocumentationType.SWAGGER_2)
@@ -25,9 +29,9 @@ public class SwaggerConfig {
                         new ApiInfoBuilder()
                                 .title("Swagger UI Test By Shimizu")
                                 .description("")
-                                .version("")
+                                .version("4.0")
                                 .build())
-                .groupName("default")
+                .groupName("A-default")
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .build();
@@ -37,11 +41,11 @@ public class SwaggerConfig {
     public Docket V1(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
-                                     .title("Swagger @APIVersion")
-                                     .description("V1 版本")
-                                     .version("3.0")
-                                     .build())
-                .groupName("V1")
+                        .title("Swagger @APIVersion")
+                        .description("V1 版本")
+                        .version("3.0")
+                        .build())
+                .groupName("a-V1")
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(APIVersion.class))
                 .build();

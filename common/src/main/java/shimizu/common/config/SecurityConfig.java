@@ -1,49 +1,41 @@
-//package shimizu.common.config;
-//
-//import lombok.AllArgsConstructor;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.builders.WebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-//import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-//import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-//import org.springframework.web.cors.CorsConfiguration;
-//import org.springframework.web.cors.CorsConfigurationSource;
-//import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.filter.CompositeFilter;
-//import shimizu.identity.auth.UserInfo;
-//import shimizu.identity.auth.jwt.JwtAuthenticationProvider;
-//import shimizu.identity.auth.jwt.JwtAuthenticationSuccessHandler;
-//import shimizu.identity.auth.jwt.JwtFilter;
-//import shimizu.identity.auth.web.WebAuthenticationFilter;
-//import shimizu.common.config.authentication.RestAccessDeniedHandler;
-//import shimizu.common.config.authentication.RestAuthenticationEntryPoint;
-//import shimizu.common.config.authentication.SimpleLogoutHandler;
-//
-//import javax.servlet.Filter;
-//import java.util.ArrayList;
-//import java.util.Collections;
-//import java.util.List;
-//
-///**
-// * @author Shimizu
-// * @version 1.0
-// * @date 2020/7/29 15:58
-// */
-//@Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@AllArgsConstructor
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//
+package shimizu.common.config;
+
+import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CompositeFilter;
+
+
+import javax.servlet.Filter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * @author Shimizu
+ * @version 1.0
+ * @date 2020/7/29 15:58
+ */
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
 //    private final JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler;
 //    private final AuthenticationFailureHandler authenticationFailureHandler;
 //    private final SimpleLogoutHandler simpleLogoutHandler;
@@ -51,7 +43,7 @@
 //    private final UserInfo userInfo;
 //    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 //    private final RestAccessDeniedHandler restAccessDeniedHandler;
-//
+
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        AuthenticationManager am = this.authenticationManager();
@@ -136,26 +128,34 @@
 //        filter.setAuthenticationFailureHandler(authenticationFailureHandler);
 //        filters.add(filter);
 //    }
-//
-////    /**
-////     * 配置认证校验提供器
-////     *
-////     * @param auth
-////     * @throws Exception
-////     */
-////    @Override
-////    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-////        auth
-////                .authenticationProvider(new WebAuthenticationProvider(userInfo))
-////                .authenticationProvider(new PoliceCabinetAuthenticationProvider(userInfo))
-////                .authenticationProvider(new FaceAuthenticationProvider(userInfo));
-//////                userDetailsService(identityService)
-//////                .passwordEncoder(NoOpPasswordEncoder.getInstance());
-////    }
-//
+
+//    /**
+//     * 配置认证校验提供器
+//     *
+//     * @param auth
+//     * @throws Exception
+//     */
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .authenticationProvider(new WebAuthenticationProvider(userInfo))
+//                .authenticationProvider(new PoliceCabinetAuthenticationProvider(userInfo))
+//                .authenticationProvider(new FaceAuthenticationProvider(userInfo));
+////                userDetailsService(identityService)
+////                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+//    }
+
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {
 //        //解决静态资源被拦截的问题
 //        web.ignoring().mvcMatchers("/api/**");
 //    }
-//}
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().anyRequest().permitAll().
+                and().logout().permitAll()
+                .and().csrf().disable();//关闭CSRF保护即可。
+    }
+
+}
