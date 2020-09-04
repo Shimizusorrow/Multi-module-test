@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import shimizu.common.annotion.APIVersion;
 import shimizu.common.config.MessageConfig;
@@ -90,9 +92,39 @@ public class StudentController {
         return String.join(" ", MessageConfig.Messages);
     }
 
+    @ApiOperation("测试多条件查询")
+    @GetMapping("/duotiaojian")
+    public List<Student> findsss(@RequestParam(required = false) String name,
+                                 @RequestParam(required = false) String gender) {
+        return stuQueryService.findByNameOrGender(name, gender);
+    }
+
+    @ApiOperation("测试多条件查询2")
+    @GetMapping("/duotiaojian 2")
+    public List<Student> findsss2(@RequestParam(required = false) String stuNumber,
+                                  @RequestParam(required = false) String shoNumber) {
+        return stuQueryService.findBySchool(stuNumber, shoNumber);
+    }
+
+    @ApiOperation("测试多条件查询3")
+    @GetMapping("/duotiaojian 3")
+    public Page<Student> findByNameAndShoNumberAndGender(@RequestParam(required = false) String name,
+                                                         @RequestParam(required = false) String number,
+                                                         @RequestParam(required = false) String gender,
+                                                         Pageable pageable) {
+        return stuQueryService.findByNameAndShoNumberAndGender(name, number, gender, pageable);
+    }
+
 //    @ApiOperation("测试导出Yml数组数据")
 //    @GetMapping("/ymls-tier")
 //    public String testYmlsTier() {
 //        Stream.of(MessageConfig.tier).collect(Collectors.toList());
 //    }
+
+
+    @ApiOperation("0.0")
+    @GetMapping("/tests")
+    List<Student> findTest() {
+        return stuQueryService.findTest();
+    }
 }

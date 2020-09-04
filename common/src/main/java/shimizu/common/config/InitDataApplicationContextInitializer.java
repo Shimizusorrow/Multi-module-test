@@ -42,17 +42,17 @@ public class InitDataApplicationContextInitializer implements ApplicationContext
     @SneakyThrows
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
-        Yaml yaml = new Yaml();
-        FileInputStream inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/common/src/main/resources/initData.yml"));
-        FileInputStream inputStreams=new FileInputStream(new File(System.getProperty("user.dir") + "/common/src/main/resources/initData.yml"));;
-        Map<String, Object> map2Object = yaml.load(inputStream);
-        Map<String, Map<String,Object>> map2Map = yaml.load(inputStreams);
-
-//        MessageConfig.TEST =  ((Map<String,Integer>)map2Object.get("spring")).get("url").toString();
-        MessageConfig.TEST = map2Map.get("spring").get("url").toString();
-        logger.info(String.format("一共导入了%s条 Yaml数据", map2Map.size()));
-
-        logger.info("导入的数据是 : " + MessageConfig.TEST);
+//        Yaml yaml = new Yaml();
+//        FileInputStream inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/common/src/main/resources/initData.yml"));
+//        FileInputStream inputStreams=new FileInputStream(new File(System.getProperty("user.dir") + "/common/src/main/resources/initData.yml"));;
+//        Map<String, Object> map2Object = yaml.load(inputStream);
+//        Map<String, Map<String,Object>> map2Map = yaml.load(inputStreams);
+//
+////        MessageConfig.TEST =  ((Map<String,Integer>)map2Object.get("spring")).get("url").toString();
+//        MessageConfig.TEST = map2Map.get("spring").get("url").toString();
+//        logger.info(String.format("一共导入了%s条 Yaml数据", map2Map.size()));
+//
+//        logger.info("导入的数据是 : " + MessageConfig.TEST);
 
 
     }
