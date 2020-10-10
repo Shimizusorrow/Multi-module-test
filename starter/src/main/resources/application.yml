@@ -31,3 +31,6 @@ server:
   port: 8010
 #  servlet:
 #    context-path: /shimizu
+district:
+  district-name: 温州市
+  district-number: 3303

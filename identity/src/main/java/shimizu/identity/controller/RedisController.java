@@ -1,8 +1,10 @@
 package shimizu.identity.controller;
 
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import shimizu.identity.conf.DistrictInfo;
 import shimizu.identity.service.RedisService;
 
 /**
@@ -17,6 +19,7 @@ import shimizu.identity.service.RedisService;
 @AllArgsConstructor
 public class RedisController {
     private final RedisService redisService;
+    private final DistrictInfo districtInfo;
 
     @PostMapping("set-val")
     @ApiOperation("测试设置val")
@@ -33,8 +36,14 @@ public class RedisController {
 
     @GetMapping("connection")
     @ApiOperation("测试是否连接成功")
-    public String connection(){
+    public String connection() {
         redisService.connection();
         return "xxx";
+    }
+
+    @GetMapping("/area-test")
+    @ApiModelProperty("测试地区编码")
+    public String getArea() {
+        return districtInfo.getDistrictName() + ": " + districtInfo.getDistrictNumber();
     }
 }

@@ -22,3 +22,6 @@ server:
 tea:
   enable: false
 
+district:
+  district-name: 温州市
+  district-number: 3303
