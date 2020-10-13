@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
  * @author shimizu
  * @date 2020年10月10日13:24:25
  */
-//@Component
-//@ConfigurationProperties(prefix = "district-info-statistic")
 @Getter
 @Configuration
 public class DistrictInfoStatistic {
@@ -29,12 +27,12 @@ public class DistrictInfoStatistic {
      */
     public static String districtNumber;
 
-    @Value("${districts.districtName}")
+    @Value("${districts.district-name}")
     public void setDistrictName(String districtName) {
         DistrictInfoStatistic.districtName = districtName;
     }
 
-    @Value("${districts.districtNumber}")
+    @Value("${districts.district-number}")
     public void setDistrictNumber(String districtNumber) {
         DistrictInfoStatistic.districtNumber = districtNumber;
     }

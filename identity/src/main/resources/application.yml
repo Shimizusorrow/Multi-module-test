@@ -30,5 +30,5 @@ time-conf:
   duration: 3d
 
 districts:
-  districtName: 温州市
-  districtNumber: 3303
+  district-name: 温州市
+  district-number: 3303
