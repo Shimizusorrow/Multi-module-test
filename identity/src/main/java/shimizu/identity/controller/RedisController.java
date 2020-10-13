@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import shimizu.identity.conf.DistrictInfo;
+import shimizu.identity.conf.DistrictInfoStatistic;
+import shimizu.identity.conf.TimeConf;
 import shimizu.identity.service.RedisService;
 
 /**
@@ -20,6 +22,7 @@ import shimizu.identity.service.RedisService;
 public class RedisController {
     private final RedisService redisService;
     private final DistrictInfo districtInfo;
+    private final TimeConf timeConf;
 
     @PostMapping("set-val")
     @ApiOperation("测试设置val")
@@ -45,5 +48,17 @@ public class RedisController {
     @ApiModelProperty("测试地区编码")
     public String getArea() {
         return districtInfo.getDistrictName() + ": " + districtInfo.getDistrictNumber();
+    }
+
+    @GetMapping("/statistic-area-test")
+    @ApiModelProperty("测试静态地区编码")
+    public String getAreaStatistic() {
+        return DistrictInfoStatistic.districtName+" : "+DistrictInfoStatistic.districtNumber;
+    }
+
+    @GetMapping("/time-test")
+    @ApiModelProperty("测试地区编码")
+    public String getTime() {
+        return timeConf.getDuration().getSeconds()+"";
     }
 }

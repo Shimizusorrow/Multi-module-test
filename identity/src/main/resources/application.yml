@@ -18,10 +18,17 @@ spring:
       password: user
       roles: user,admin
 server:
-  port: 8010
+  port: 8011
 tea:
   enable: false
 
 district:
   district-name: 温州市
   district-number: 3303
+
+time-conf:
+  duration: 3d
+
+districts:
+  districtName: 温州市
+  districtNumber: 3303

@@ -38,6 +38,12 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        这种依赖性确保注释处理器在编译期间运行时，其他元数据可用-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <!--        <dependency>-->
         <!--            <groupId>org.mockito</groupId>-->

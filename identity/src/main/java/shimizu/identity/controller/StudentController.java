@@ -13,6 +13,7 @@ import shimizu.common.config.MessageConfig;
 import shimizu.common.exception.BusinessException;
 import shimizu.common.exception.CustomerException;
 import shimizu.identity.domain.Student;
+import shimizu.identity.repository.StuRepository;
 import shimizu.identity.service.query.StuQueryService;
 
 import java.util.List;
@@ -29,6 +30,7 @@ import java.util.stream.Stream;
 @RequestMapping("/stu")
 public class StudentController {
     private final StuQueryService stuQueryService;
+    private final StuRepository stuRepository;
 
     @GetMapping("/{id}")
     @ApiOperation("通过id查找学生")
@@ -127,4 +129,12 @@ public class StudentController {
     List<Student> findTest() {
         return stuQueryService.findTest();
     }
+
+    @GetMapping("/findById-test")
+    @ApiOperation("测试findById  id is null")
+    public Student findByIdTest() {
+        return stuRepository.findById(null)
+                .orElseThrow(() -> new RuntimeException("学生不存在"));
+    }
 }
+
