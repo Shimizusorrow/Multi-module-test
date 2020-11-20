@@ -4,7 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 import shimizu.identity.domain.Student;
+
+import java.util.List;
 
 /**
  * @author Shimizu
@@ -12,6 +15,15 @@ import shimizu.identity.domain.Student;
 public interface StuRepository extends JpaRepository<Student, String> {
     @Query(value = "select s from Student s where s.id = :id")
     Student findOne(String id);
+
+    /**
+     * 测试readOnly
+     * @return
+     */
+    @Transactional(readOnly = true)
+    @Query(nativeQuery = true,
+            value = "select  * from student s  ")
+    List<Student> findAllReadOnly();
 
 //    @Query(value = "select s from Student as s where ")
 //    Page<Student>pages(Pageable pageable);

@@ -16,8 +16,13 @@ import shimizu.identity.domain.Student;
 import shimizu.identity.repository.StuRepository;
 import shimizu.identity.service.query.StuQueryService;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,6 +36,49 @@ import java.util.stream.Stream;
 public class StudentController {
     private final StuQueryService stuQueryService;
     private final StuRepository stuRepository;
+    private final Set<String> SET = new HashSet<>();
+
+
+    @PostMapping("/init-student")
+    @ApiOperation("初始化学生数据")
+    public void initStudent() {
+        stuQueryService.initStudent();
+
+    }
+
+    @PutMapping("/change-info")
+    @ApiOperation("测试ReadOnly")
+    public List<Student> testReadOnly() {
+        long time = System.currentTimeMillis();
+        List<Student> readOnly = stuRepository.findAllReadOnly();
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time);
+        return readOnly;
+    }
+
+    @GetMapping("/test-findAll")
+    @ApiOperation("测试findAll")
+    public List<Student> testFindAll() {
+        long time = System.currentTimeMillis();
+        List<Student> findAll = stuRepository.findAll();
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time);
+
+        return findAll;
+    }
+
+
+    private String generateNoRepeatString() {
+        String temp = getString();
+        while (SET.contains(temp)) {
+            temp = getString();
+        }
+        return temp;
+    }
+
+    private String getString() {
+        return String.format("%06x", (int) (Math.random() * 999999));
+    }
 
     @GetMapping("/{id}")
     @ApiOperation("通过id查找学生")

@@ -56,4 +56,14 @@ public class Student extends Person {
      */
     @ApiModelProperty("入学时间")
     private String enrollment;
+
+    public Student(String id, String stuNumber, int shoNumber, String department, String academy, int educationalSystem, String enrollment) {
+        this.setId(id);
+        this.stuNumber = stuNumber;
+        this.shoNumber = shoNumber;
+        this.department = department;
+        this.academy = academy;
+        this.educationalSystem = educationalSystem;
+        this.enrollment = enrollment;
+    }
 }
