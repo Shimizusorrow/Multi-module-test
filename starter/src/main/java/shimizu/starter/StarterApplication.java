@@ -1,22 +1,28 @@
-package shimizu.statrter;
+package shimizu.starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import shimizu.common.config.LearnApplicationContextInitializer;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import javax.swing.*;
+import shimizu.app.AppApplication;
+import shimizu.identity.IdentityApplication;
 
 /**
  * @author Shimizu
  */
 @SpringBootApplication(scanBasePackages = {
+        "shimizu.starter",
         "shimizu.common",
         "shimizu.app",
         "shimizu.identity"
 })
+//@SpringBootApplication(
+//        scanBasePackageClasses = {
+//                StarterApplication.class,
+//                IdentityApplication.class,
+//                AppApplication.class
+//        }
+//)
 @SpringBootConfiguration
 @EnableConfigurationProperties
 public class StarterApplication {
