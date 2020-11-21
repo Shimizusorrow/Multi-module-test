@@ -3,6 +3,7 @@ package shimizu.identity.controller;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import shimizu.identity.conf.DistrictInfo;
 import shimizu.identity.conf.DistrictInfoStatistic;
@@ -45,19 +46,19 @@ public class RedisController {
     }
 
     @GetMapping("/area-test")
-    @ApiModelProperty("测试地区编码")
+    @ApiOperation("测试地区编码")
     public String getArea() {
         return districtInfo.getDistrictName() + ": " + districtInfo.getDistrictNumber();
     }
 
     @GetMapping("/statistic-area-test")
-    @ApiModelProperty("测试静态地区编码")
+    @ApiOperation("测试静态地区编码")
     public String getAreaStatistic() {
         return DistrictInfoStatistic.districtName+" : "+DistrictInfoStatistic.districtNumber;
     }
 
     @GetMapping("/time-test")
-    @ApiModelProperty("测试地区编码")
+    @ApiOperation("测试地区编码")
     public String getTime() {
         return timeConf.getDuration().getSeconds()+"";
     }
