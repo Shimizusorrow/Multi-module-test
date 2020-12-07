@@ -41,3 +41,6 @@ districts:
   job: true
   district-name: 温州市
   district-number: 3303
+static-conf:
+  name: 张三
+  flag: true
