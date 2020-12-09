@@ -23,12 +23,12 @@ public class OrganUnitController {
     private final OrganUnitRepository organUnitRepository;
 
     @GetMapping
-    List<OrganUnit> findAll() {
+    public List<OrganUnit> findAll() {
         return organUnitRepository.findAll();
     }
 
-    @GetMapping("/id")
-    OrganUnit findById(@PathVariable String id) {
+    @GetMapping("/{id}")
+    public OrganUnit findById(@PathVariable String id) {
         return organUnitRepository.findById(id).orElseThrow(() -> new BusinessException("机构不存在!"));
     }
 }
